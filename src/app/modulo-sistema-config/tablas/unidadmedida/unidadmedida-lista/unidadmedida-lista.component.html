@@ -1,0 +1,63 @@
+<div [hidden]="!this.show">
+  <h3>
+    {{titulo}}
+  </h3>
+  <p-growl [value]="msgs"></p-growl>
+
+  <p-confirmDialog header="Confirmacion" icon="fa fa-question-circle" width="425" #cd>
+      <p-footer>
+          <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
+          <button type="button" pButton icon="fa-check" label="Si" (click)="cd.accept()"></button>
+      </p-footer>
+  </p-confirmDialog>
+
+  <div style="height: 70%;">
+
+    <button type="button" class="btn btn-danger btn-circle" [routerLink]="['./edicion', {id:0}]" (click)="ocultarLista()">
+      <i class="fa fa-plus"></i>
+    </button>
+    <button type="button" class="btn btn-info btn-circle" [routerLink]="['./productoedicion', {id:0}]">
+      <i class="fa fa-print"></i>
+    </button>
+    <button type="button" class="btn btn-success btn-circle" (click)="showPanelBuscar()">
+      <i class="fa fa-search"></i>
+    </button>
+   
+    <br>
+    <br>
+
+    <p-dataTable emptyMessage=" " [value]="unidadmedidasModel" [filterDelay]=500 [lazy]="true" (onFilter)="filter($event)"
+      selectionMode="single" [responsive]="true">
+
+      <p-column field="idunidadmedida" #idcategoria header="Codigo" [style]="{'width':'90px'}" [filter]="showPanelBuscarFlag"> </p-column>
+      
+      <p-column field="dscunidadmedida" header="Descripcion" [style]="{'width':'250px'}" [filter]="showPanelBuscarFlag"> </p-column>
+    
+      
+      <p-column>
+        <ng-template let-data="rowData" pTemplate type="body">
+          <i [routerLink]="['edicion', {id:data.idunidadmedida}]" (click)="ocultarLista()" style="cursor: pointer;" class="fa fa-pencil fa-1x" aria-hidden="true"
+            data-toggle="tooltip" title="Editar"></i>&nbsp;
+
+        
+              <i style="cursor: pointer;" class="fa fa-trash-o fa-1x" aria-hidden="true" data-toggle="tooltip" title="Eliminar" (click)="confirm(data)"></i>
+          
+          
+
+        </ng-template>
+      </p-column>
+
+    </p-dataTable>
+
+  </div>
+
+  <ad-pagination [rowsForPageCbo]="[10,20,30,40]" [model]="this.unidadmedidasModel" [filterPage]=[this.filterPage] [controller]="'unidadmedida'"
+    [orden]="'idunidadmedida'" [_refreshPage]="this.refreshPage" (onPageChange)="this.refreshModel($event)"></ad-pagination>
+
+</div>
+
+
+<div class="container-fluit">
+  <router-outlet (activate)='onActivate($event)' (deactivate)='onDeactivate($event)'></router-outlet>
+</div>
+

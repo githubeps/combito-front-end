@@ -1,0 +1,66 @@
+<div [hidden]="!this.show">
+
+  <h3>
+    {{titulo}}
+  </h3>
+
+  <p-growl [value]="this.msgPopup" [life]=1500></p-growl>
+
+
+  <p-confirmDialog header="Confirmacion" icon="fa fa-question-circle" width="425" #cd>
+    <p-footer>
+      <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
+      <button type="button" pButton icon="fa-check" label="Si" (click)="cd.accept()"></button>
+    </p-footer>
+  </p-confirmDialog>
+
+  <div style="height: 70%;">
+    <button type="button" class="btn btn-danger btn-circle" [routerLink]="['./edicion', {id:0}]" (click)="ocultarLista()">
+      <i class="fa fa-plus"></i>
+    </button>
+    <button type="button" class="btn btn-info btn-circle" [routerLink]="['./productoedicion', {id:0}]">
+      <i class="fa fa-print"></i>
+    </button>
+    <button type="button" class="btn btn-success btn-circle" (click)="showPanelBuscar()">
+      <i class="fa fa-search"></i>
+    </button>
+
+    <br>
+    <br>
+
+    <p-dataTable emptyMessage=" " [value]="almacensModel" [filterDelay]=500 [lazy]="true" (onFilter)="filter($event)" selectionMode="single"
+      scrollHeight="70%" [style]="{'height':'80%'}">
+
+      <p-column field="idalmacen" #idcategoria header="CODIGO" [style]="{'width':'90px'}" [filter]="showPanelBuscarFlag"> > </p-column>
+
+      <p-column field="dscalmacen" header="DESCRIPCION" [style]="{'width':'300px'}" [filter]="showPanelBuscarFlag"> ></p-column>
+
+      <p-column field="direccion" header="DIRECCION" [style]="{'width':'300px'}" [filter]="showPanelBuscarFlag"> ></p-column>
+
+
+      <p-column>
+        <ng-template let-data="rowData" pTemplate type="body">
+          <i [routerLink]="['edicion', {id:data.idalmacen}]" style="cursor: pointer;" class="fa fa-pencil fa-1x" aria-hidden="true"
+            data-toggle="tooltip" title="Editar"></i>&nbsp;
+
+          <i style="cursor: pointer;" class="fa fa-trash-o fa-1x" aria-hidden="true" data-toggle="tooltip" title="Eliminar"></i>
+
+
+
+        </ng-template>
+      </p-column>
+
+
+    </p-dataTable>
+
+  </div>
+
+  <ad-pagination [rowsForPageCbo]="[10,20,30,40]" [model]="this.almacensModel" [filterPage]=[this.filterPage] [controller]="'almacen'"
+    [orden]="'dscalmacen'" [_refreshPage]="this.refreshPage" (onPageChange)="refreshModel($event)"></ad-pagination>
+</div>
+
+
+
+<div class="container-fluit">
+  <router-outlet  ></router-outlet>
+</div>

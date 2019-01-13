@@ -1,0 +1,8 @@
+<mat-form-field class="w-100">
+  <mat-select appNextfocus placeholder="Categoria" (selectionChange)="_onSelectionChange($event)">
+
+    <mat-option *ngFor="let item of categoriasModel" [value]="item">
+      {{item.dsccategoria}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

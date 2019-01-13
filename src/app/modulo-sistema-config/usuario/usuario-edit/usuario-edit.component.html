@@ -1,0 +1,55 @@
+<div class="m-contenedor">
+  <div class="card">
+    <div class="card-header">
+        USUARIO
+        <div class="float-sm-right">
+          <button type="button" [routerLink]="['../',{flagRefreshReturn:flagRefreshReturn}]" class="btn btn-info btn-sm">Atras</button>
+        </div>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="usuarioForm">
+        <div class="row">        
+          <div class="col-md-6">
+                  <mat-form-field class="w-100">
+                    <input autocomplete="off" autofocus matInput placeholder="Nombres" formControlName="nomusuario">
+                  </mat-form-field>
+                  <mat-form-field class="w-100">
+                    <input autocomplete="off" matInput placeholder="DNI" formControlName="dni">
+                  </mat-form-field>
+                  <mat-form-field class="w-70">
+                    <input autocomplete="off" matInput placeholder="Login" formControlName="login">
+                  </mat-form-field>
+                  <mat-form-field class="w-70">
+                      <input type="password"  matInput placeholder="Clave" formControlName="clave">
+                  </mat-form-field>
+                  <mat-slide-toggle formControlName="activo">Activo</mat-slide-toggle>
+
+                  <mat-form-field class="w-100">
+                      <mat-select appNextfocus placeholder="Perfil" formControlName="perfil" [compareWith]="compararPerfil">
+                        <mat-option *ngFor="let perfil of perfilModel" [value]="perfil">
+                          {{perfil.dscperfil}}
+                        </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field class="w-100">
+                      <mat-select appNextfocus placeholder="Filial" formControlName="filial" [compareWith]="compararFilial">
+                        <mat-option *ngFor="let filial of filialModel" [value]="filial">
+                          {{filial.dscfilial}}
+                        </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+
+                <br>
+                    <button [disabled]="!usuarioForm.valid" type="button" class="btn btn-sm btn-info" (click)="create()" *ngIf="this.usuarioModel.idusuario==0 else elseBlock">
+                    <span class="fa fa-floppy-o"></span>&nbsp; Grabar</button>
+                      <ng-template #elseBlock>
+                        <button [disabled]="!usuarioForm.valid" type="button" class="btn btn-sm btn-info" (click)="update()">
+                        <span class="fa fa-floppy-o"></span>&nbsp; Actualizar</button>
+                      </ng-template>
+          </div> 
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

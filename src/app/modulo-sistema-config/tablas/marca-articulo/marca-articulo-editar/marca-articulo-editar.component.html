@@ -1,0 +1,47 @@
+<p-growl [value]="this.msgPopup" [life]=1500>
+</p-growl>
+<button type="button" [routerLink]="['../',{flagRefreshReturn:this.flagRefreshReturn}]" class="btn btn-success">Atras</button>
+
+<div class="card">
+
+  <div class="card-header">
+    DATOS DE LA MARCA
+  </div>
+
+  <br>
+
+  <form [formGroup]="marcaForm">
+
+    <div class="row">
+      <label class="col-md-2" for="">Codigo</label>
+      <div class="col-md-2">
+        <input formControlName="idMarca" type="text" [(ngModel)]="marcaArticuloModel.idmarca" class="form-control inputfield" readonly>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-md-2" for="">Descripcion</label>
+      <div class="col-md-6">
+        <input formControlName="dscMarca" type="text" [(ngModel)]="marcaArticuloModel.dscmarca" class="form-control inputfield">
+      </div>
+    </div>
+
+
+    <hr>
+    <div class="row" >
+
+      <div class="col-md-4">
+        <button [disabled]="!marcaForm.valid" type="button" class="btn btn-sm btn-info" (click)="create()" *ngIf="this.marcaArticuloModel.idmarca==0 else elseBlock">
+          <span class="fa fa-floppy-o"></span>&nbsp; Grabar</button>
+
+        <ng-template #elseBlock>
+          <button [disabled]="!marcaForm.valid" type="button" class="btn btn-sm btn-info" (click)="update()">
+            <span class="fa fa-floppy-o"></span>&nbsp; Actualizar</button>
+
+        </ng-template>
+      </div>
+
+    </div>
+  </form>
+
+</div>

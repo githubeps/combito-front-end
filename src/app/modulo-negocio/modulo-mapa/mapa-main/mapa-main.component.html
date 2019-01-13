@@ -1,0 +1,97 @@
+<div>
+  <mat-accordion>
+
+    <mat-expansion-panel>
+
+
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Comercial
+        </mat-panel-title>
+        <mat-panel-description>
+          <!-- Filtro para relacionado a la conexion -->
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="container" fxLayout.xs="column">
+        <!-- <div fxFlex ="15%">
+          <mat-form-field>
+            <input matInput placeholder="First name" [(ngModel)]="filter">
+
+          </mat-form-field>
+
+        </div> -->
+
+
+        <div fxFlex="15%">
+          <p>
+            <app-tipo-de-servicio (getObject)="f_tipoServicio($event)"></app-tipo-de-servicio>
+          </p>
+        </div>&nbsp;&nbsp;
+
+
+        <div fxFlex="25%">
+          <p>
+            <app-condicion-conexion-agua (getObject)="f_condicionConexionAgua($event)"></app-condicion-conexion-agua>
+          </p>
+        </div>
+        &nbsp;&nbsp;
+
+        <div fxFlex="15%">
+          <p>
+            <app-tipo-propiedad (getObject)="f_tipoPropiedad($event)"></app-tipo-propiedad>
+          </p>
+        </div>      
+        &nbsp;&nbsp;
+
+        <div fxFlex="15%">
+          <p>
+            <app-categoria (getObject)="f_categoria($event)"></app-categoria>
+          </p>
+        </div>      
+        &nbsp;&nbsp;        
+        
+        <div fxFlex="15%">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Nro de Medidor" value="">
+          </mat-form-field>
+        
+        </div>
+        
+
+      </div>
+      <button mat-button (click)='updateFilter()'>Run</button>
+     <!--  <button mat-button (click)='resetFilter()'>Reset</button> -->
+
+
+
+    </mat-expansion-panel>
+
+
+    <!-- <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Consumos
+        </mat-panel-title>
+        <mat-panel-description>
+          Filtro para consumos
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+        <input matInput placeholder="First name" [(ngModel)]="filter">
+
+      </mat-form-field>
+
+      <button mat-button (click)='updateFilter()'>Run</button>
+
+
+    </mat-expansion-panel> -->
+  </mat-accordion>
+
+</div>
+
+
+
+
+<div id="map" class="map"></div>

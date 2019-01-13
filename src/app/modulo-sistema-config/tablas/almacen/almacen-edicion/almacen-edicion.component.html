@@ -1,0 +1,48 @@
+<p-growl [value]="this.msgPopup" [life]=1500>
+</p-growl>
+<button type="button" [routerLink]="['../']" class="btn btn-success">Atras</button>
+
+<div class="card">
+
+  <div class="card-header">
+    DATOS DEL ALMACEN
+  </div>
+
+  <br>
+
+  <form [formGroup]="almacenForm">
+
+    <div class="row">
+      <label class="col-md-2" for="">Codigo</label>
+      <div class="col-md-2">
+        <input formControlName="idalmacen" type="text" class="form-control inputfield" readonly>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-md-2" for="">Descripcion</label>
+      <div class="col-md-6">
+        <input formControlName="dscalmacen" type="text" class="form-control inputfield">
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-md-2" for="">Direccion</label>
+      <div class="col-md-6">
+        <input formControlName="direccion" type="text" class="form-control inputfield">
+      </div>
+    </div>
+
+    <hr>
+    <div class="row" >
+
+      <div class="col-md-4">
+        <button [disabled]="!almacenForm.valid" type="button" class="btn btn-sm btn-success" (click)="save()">
+          <span class="fa fa-floppy-o"></span>&nbsp; Grabar</button>
+
+      </div>
+
+    </div>
+  </form>
+
+</div>

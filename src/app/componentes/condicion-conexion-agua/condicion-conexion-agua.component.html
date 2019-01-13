@@ -1,0 +1,8 @@
+<mat-form-field class="w-100">
+  <mat-select appNextfocus placeholder="Condicion de la conexion" (selectionChange)="_onSelectionChangeCondicionConexion($event)">
+
+    <mat-option *ngFor="let item of condicionConexionAguasModel" [value]="item">
+      {{item.dsccondicionconexionagua}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
